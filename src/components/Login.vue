@@ -1,31 +1,34 @@
 <template>
-  <div class="login">
-    <form @submit.prevent="login">
-      <div>
-        <label for="username">Username:</label>
-        <input
-          type="text"
-          id="username"
+  <div id="login" class="login">
+    <el-form :model="loginForm" class="login-form" label-width="80px">
+      <div class="welcome-text">欢迎</div>
+      <el-form-item label="账号" style="display: flex; align-items: center;">
+        <el-input
           v-model="loginForm.username"
-          required
-        />
-      </div>
-      <div>
-        <label for="password">Password:</label>
-        <input
-          type="password"
-          id="password"
+          type="text"
+          class="form-input"
+        ></el-input
+      ></el-form-item>
+      <el-form-item label="密码" style="display: flex; align-items: center;"
+        ><el-input
           v-model="loginForm.password"
-          required
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+          type="password"
+          class="form-input"
+        ></el-input
+      ></el-form-item>
+      <el-button type="primary" @click="login" class="login-button"
+        >登录</el-button
+      >
+    </el-form>
   </div>
 </template>
 
 <script>
 import { post } from "@/share/api/api.js";
+import * as THREE from "@/assets/css/three.min.js";
+import BIRDS from "@/assets/css/vanta.birds.min.js";
+import { onMounted } from "vue";
+let vantaEffect;
 
 export default {
   data() {
@@ -46,7 +49,6 @@ export default {
         },
         {}
       ).then((res) => {
-        console.log(this.$store);
         this.$store.commit("user/setToken", res.token);
         this.$router.push({
           name: "home",
@@ -54,38 +56,60 @@ export default {
       });
     },
   },
+  setup() {
+    onMounted(() => {
+      vantaEffect = BIRDS({
+        el: "#login",
+        THREE: THREE,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        backgroundColor: 0x0,
+        color2: 0xff29,
+      });
+    });
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .login {
-  width: 300px;
-  margin: 100px auto;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-form div {
-  margin: 10px 0;
+.login-form {
+  max-width: 300px;
+  max-height: 260px;
+  margin-left: 60%;
+  margin-top: 15%;
+  padding: 10px 10px;
+  background-color: #fff;
+  border-radius: 30px;
+  text-align: center;
+  transform: scale(1.2);
+  opacity: 0.8;
 }
-
-label {
-  display: block;
-  margin-bottom: 5px;
+.form-input {
+  margin: 10px 0px;
 }
-
-input[type="text"],
-input[type="password"] {
-  width: 80%;
-  padding: 8px;
-  margin: 5px 5px;
-}
-
-button[type="submit"] {
-  width: 50%;
-  padding: 10px;
-  margin: 10px 5px;
+.login-button {
+  width: 60px;
+  height: 30px;
+  margin: 20px 0px;
+  font-size: 14px;
+  border-radius: 20px;
   cursor: pointer;
+  border: 2px;
+}
+.welcome-text {
+  margin: 15px 0px;
+  font-size: 26px;
 }
 </style>
