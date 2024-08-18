@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { post } from "@/share/api/api.js";
+import { post } from "@/api/api";
 import * as THREE from "@/assets/css/three.min.js";
 import BIRDS from "@/assets/css/vanta.birds.min.js";
 import { onMounted } from "vue";
