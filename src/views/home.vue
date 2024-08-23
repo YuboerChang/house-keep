@@ -1,12 +1,16 @@
 <template>
   <el-container>
-    <el-header
-      ><div class="header-box" @click="setCollapse">
-        <img src="@/assets/static/menu-icon.png" class="img-box" />
-        <span v-if="!isCollapse">点击折叠菜单</span>
-        <span v-if="isCollapse">点击展开菜单</span>
-      </div></el-header
-    >
+    <el-header>
+      <div class="header-box">
+        <span class="menu-collapse-box" @click="setCollapse">
+          <img src="@/assets/static/menu-icon.png" class="img-box" />
+          <span v-if="!isCollapse">点击折叠菜单</span>
+          <span v-if="isCollapse">点击展开菜单</span>
+        </span>
+        <span>
+          <UserMenu />
+        </span></div
+    ></el-header>
     <el-container>
       <el-aside :class="{ collapsed: isCollapse }">
         <Menu :isCollapse="isCollapse"></Menu>
@@ -18,11 +22,11 @@
   </el-container>
 </template>
 <script>
-import { post } from "@/api/api";
 import Menu from "@/components/menu";
+import UserMenu from "@/components/user-menu";
 
 export default {
-  components: { Menu },
+  components: { Menu, UserMenu },
   data() {
     return {
       isCollapse: false,
@@ -65,8 +69,13 @@ export default {
   width: 50px;
 }
 .el-main {
+  padding: 30px 20px;
 }
 .header-box {
+  display: flex;
+  justify-content: space-between;
+}
+.menu-collapse-box {
   display: flex;
   align-items: center;
   font-size: 12px;

@@ -16,7 +16,6 @@
   </div>
 </template>
 <script>
-import { defineProps } from "vue";
 import MenuItem from "./menu-item.vue";
 
 export default {
