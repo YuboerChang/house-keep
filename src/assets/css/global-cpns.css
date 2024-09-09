@@ -1,0 +1,14 @@
+.el-select {
+  width: 240px !important;
+  height: 40px !important;
+  margin: 20px 10px;
+}
+.el-text {
+  width: 70px !important;
+  margin-left: 20px;
+}
+.el-input {
+  width: 240px !important;
+  height: 40px !important;
+  margin: 20px 10px;
+}

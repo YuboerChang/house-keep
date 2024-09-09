@@ -10,13 +10,14 @@
       <MenuItem :menuList="item.children"></MenuItem>
     </el-sub-menu>
 
-    <el-menu-item v-else :index="item.id" @click="handleJump">
+    <el-menu-item v-else :index="item.id" @click="handleJump(item)">
       <el-icon><Position /></el-icon>{{ item.name }}</el-menu-item
     >
   </div>
 </template>
 <script>
 import MenuItem from "./menu-item.vue";
+import { useRouter } from "vue-router";
 
 export default {
   components: {
@@ -24,8 +25,13 @@ export default {
   },
   props: { menuList: Array },
   setup() {
+    const router = useRouter();
     const handleJump = (item) => {
-      console.log(item);
+      if (item.path) {
+        router.push({
+          name: item.path,
+        });
+      }
     };
     return {
       handleJump,

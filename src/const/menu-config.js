@@ -28,13 +28,13 @@ const menuListData = [
       {
         id: "21",
         name: "增加模板",
-        path: "",
+        path: "addApplyTemp",
         icon: "",
       },
       {
         id: "22",
         name: "查看模板",
-        path: "",
+        path: "listApplyTemp",
         icon: "",
       },
     ],

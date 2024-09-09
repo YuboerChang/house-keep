@@ -52,6 +52,8 @@ export default {
 };
 </script>
 <style scoped>
+@import url("@/assets/css/global-cpns.css");
+
 .el-container {
   height: 100%;
   margin: 0px;
